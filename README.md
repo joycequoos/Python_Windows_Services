@@ -1,79 +1,106 @@
 # Python | Como instalar um script Python no Windows Services
 
-Estudo sobre como instalar um script python no windows services ou seja um agendador de tarefas em Python.
+Estudo sobre como instalar um script Python no Windows Services, ou seja, um agendador de tarefas (job scheduler) em Python que roda em segundo plano no sistema operacional.
 
-## Estrutura do projeto no Visual Code
+## Sobre o projeto
 
-![Estrutura Projeto](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/Estrutura_Projeto.GIF)
+Um **Windows Service** é um programa que roda em segundo plano no Windows, sem interface visível, podendo iniciar automaticamente junto com o sistema. Esse estudo mostra o passo a passo para transformar um script Python — no caso, um agendador de tarefas feito com a biblioteca `schedule` — em um serviço do Windows, usando o **NSSM (Non-Sucking Service Manager)**.
 
-## Instando bibliotecas
+## Tecnologias utilizadas
 
-No exemplo abaixo foi instalada a biblioteca schedule pelo próprio terminal do Visual Code
+- **Python** — linguagem do script principal
+- **schedule** — biblioteca para agendamento de tarefas em Python
+- **virtualenv** — ambiente virtual para isolar as dependências do projeto
+- **NSSM** — ferramenta para transformar o script em serviço do Windows
+- **PowerShell / DOS (modo administrador)** — execução dos comandos de instalação do serviço
 
-![Biblioteca Schedule](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/02_Biblioteca_Schedule.GIF)
+## 1. Preparando o ambiente
 
-## Importando as bibliotecas
+### 1.1 Estrutura do projeto no Visual Studio Code
 
-![Importando Bibliotecas](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/03_ImportandoBibliotecas.GIF)
+[![Estrutura Projeto](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/Estrutura_Projeto.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/Estrutura_Projeto.GIF)
 
-## Definindo funções
+### 1.2 Instalando bibliotecas
 
+No exemplo abaixo foi instalada a biblioteca `schedule` pelo próprio terminal do Visual Studio Code.
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/04_Definindo_Funcoes.GIF)
+[![Biblioteca Schedule](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/02_Biblioteca_Schedule.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/02_Biblioteca_Schedule.GIF)
 
-## Montando os schedulers
+### 1.3 Importando as bibliotecas
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/05_Schedulando.GIF)
+[![Importando Bibliotecas](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/03_ImportandoBibliotecas.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/03_ImportandoBibliotecas.GIF)
 
-## Determinando a condição de execução
+## 2. Construindo o script
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/06_Determina_Cond_Exec.GIF)
+### 2.1 Definindo funções
 
-## Execução automatica de atividades
+[![Definindo Funções](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/04_Definindo_Funcoes.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/04_Definindo_Funcoes.GIF)
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/08_Executando_Jobs.GIF)
+### 2.2 Montando os schedulers
 
-Para interromper uma execução, utilizar Ctrl + C.
+[![Montando Schedulers](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/05_Schedulando.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/05_Schedulando.GIF)
 
-## Criando o ambiente virtualenv
+### 2.3 Determinando a condição de execução
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/07_Criando_VirtualEnv.GIF)
+[![Condição de Execução](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/06_Determina_Cond_Exec.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/06_Determina_Cond_Exec.GIF)
 
-## Ativando JobScheduler1
+### 2.4 Execução automática de atividades
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/09_Ativar_JobScheduler.GIF)
+[![Execução de Jobs](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/08_Executando_Jobs.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/08_Executando_Jobs.GIF)
 
-## JobScheduler1 Ativado
+> Para interromper uma execução, utilizar `Ctrl + C`.
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/10_Job_Ativado.GIF)
+### 2.5 Criando o ambiente virtualenv
 
-Para ativação do jobscheduler1 foi necessário executar o script abaixo no PowerShell
+[![Criando VirtualEnv](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/07_Criando_VirtualEnv.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/07_Criando_VirtualEnv.GIF)
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/11_Comando_Shell.GIF)
+## 3. Publicando o script como serviço do Windows
 
-## Baixar o programa que se chama NSSM
+### 3.1 Ativando o JobScheduler1
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/12_Download_NSSM.GIF)
+[![Ativar JobScheduler](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/09_Ativar_JobScheduler.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/09_Ativar_JobScheduler.GIF)
 
-Sobre o NSSM: O "NSSM.exe" refere-se ao "Non-Sucking Service Manager", que é uma ferramenta de código aberto para Windows usada para criar e gerenciar serviços do Windows. Um serviço no Windows é um programa ou processo que é executado em segundo plano, geralmente sem uma interface de usuário visível, e pode ser configurado para iniciar automaticamente quando o sistema é iniciado.
+### 3.2 JobScheduler1 ativado
 
-O NSSM permite que você converta um aplicativo ou script em um serviço do Windows, o que pode ser útil em várias situações. Por exemplo, você pode usá-lo para executar uma tarefa em segundo plano, como um servidor web, um serviço de banco de dados, ou qualquer outro aplicativo que precise ser executado como um serviço.
+[![JobScheduler Ativado](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/10_Job_Ativado.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/10_Job_Ativado.GIF)
 
-## Em seguida executar o DOS como ADMINISTRADOR, e realizar a instalação do serviço
+Para ativação do JobScheduler1, foi necessário executar o script abaixo no PowerShell.
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/13_Instalacao_Servi%C3%A7o.GIF)
+[![Comando Shell](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/11_Comando_Shell.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/11_Comando_Shell.GIF)
 
-## Acessar serviços e verificar o serviço Jobscheduler1
+### 3.3 Baixando o NSSM
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/14_Servico_Job_Scheduler.GIF)
+[![Download NSSM](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/12_Download_NSSM.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/12_Download_NSSM.GIF)
 
-## Iniciar Serviço
+**Sobre o NSSM:** o `NSSM.exe` refere-se ao *Non-Sucking Service Manager*, uma ferramenta de código aberto para Windows usada para criar e gerenciar serviços do Windows. Um serviço no Windows é um programa ou processo executado em segundo plano, geralmente sem interface de usuário visível, que pode ser configurado para iniciar automaticamente quando o sistema é iniciado.
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/15_Iniciar_Servico.GIF)
+O NSSM permite converter um aplicativo ou script em um serviço do Windows, o que é útil em várias situações — por exemplo, para executar uma tarefa em segundo plano, como um servidor web, um serviço de banco de dados ou qualquer outro aplicativo que precise rodar como serviço.
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/blob/main/img/16_Servico_EmExecucao.GIF)
+### 3.4 Instalando o serviço
 
-## Logs do Serviço
+Em seguida, executar o DOS como **administrador** e realizar a instalação do serviço.
 
-![image](https://github.com/JosiTubaroski/Python_Windows_Services/assets/66569714/b8bea5db-0b09-4b96-8570-8750df9b634e)
+[![Instalação do Serviço](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/13_Instalacao_Servi%C3%A7o.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/13_Instalacao_Servi%C3%A7o.GIF)
 
+## 4. Verificação
+
+### 4.1 Acessar Serviços e verificar o serviço JobScheduler1
+
+[![Serviço JobScheduler](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/14_Servico_Job_Scheduler.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/14_Servico_Job_Scheduler.GIF)
+
+### 4.2 Iniciar o serviço
+
+[![Iniciar Serviço](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/15_Iniciar_Servico.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/15_Iniciar_Servico.GIF)
+
+[![Serviço em Execução](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/16_Servico_EmExecucao.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/16_Servico_EmExecucao.GIF)
+
+### 4.3 Logs do serviço
+
+<!--
+ATENÇÃO: a imagem original desta seção usava um link temporário do GitHub
+(private-user-images...) que já expirou e não carrega mais. Suba o print dos
+logs para a pasta /img do repositório (ex: img/17_Logs_Servico.GIF) e troque
+o link abaixo pelo caminho definitivo, seguindo o mesmo padrão das imagens acima.
+-->
+
+[![Logs do Serviço](https://github.com/joycequoos/Python_Windows_Services/raw/main/img/17_Logs_Servico.GIF)](https://github.com/joycequoos/Python_Windows_Services/blob/main/img/17_Logs_Servico.GIF)
